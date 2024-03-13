@@ -1,4 +1,4 @@
-# Idk just an idea that i get at 3 am
+# Idk just an idea that i got at 3 am
 
 # Images
 
