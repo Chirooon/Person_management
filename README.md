@@ -16,4 +16,4 @@ You can also search for the person you have saved - always search for the name y
 
 It has an admin console where you can either delete specific things from a person or delete all information you have ever saved
 
-The default username for the Admin log in is: `Admin` and pass is: `Admin123` but this can be changed as required
+The default username for the Admin login is: `Admin` and pass is: `Admin123` but this can be changed as required
