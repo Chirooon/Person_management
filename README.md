@@ -17,3 +17,10 @@ You can also search for the person you have saved - always search for the name y
 It has an admin console where you can either delete specific things from a person or delete all information you have ever saved
 
 The default username for the Admin login is: `Admin` and pass is: `Admin123` but this can be changed as required
+
+# Install
+
+I'm to lazy to write it down so here is a Video tutorial:
+
+https://github.com/Chirooon/Person_management/assets/155199793/9b03be6e-bb49-418b-a0ed-0cb2210c6052
+
