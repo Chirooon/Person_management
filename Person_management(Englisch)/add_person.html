@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Person Management</title>
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        position: relative;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"], input[type="password"], input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .drop-area {
+        width: 100%;
+        height: 100px;
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 100px;
+        background-color: #f9f9f9;
+        margin-bottom: 15px;
+        cursor: pointer;
+    }
+    #adminLoginButton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+</style>
+</head>
+<body>
+
+<button id="adminLoginButton" class="button" onclick="showAdminLoginForm()">Admin Log In</button>
+
+<div class="container">
+    <h2>Add Person</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter Name">
+    <label for="age">Age:</label>
+    <input type="text" id="age" placeholder="Enter Age">
+    <label for="occupation">Occupation:</label>
+    <input type="text" id="occupation" placeholder="Enter Occupation">
+    <div class="drop-area" id="dropArea" onclick="openFileExplorer()">Drop Image Here</div>
+    <input type="button" value="Add Person" onclick="addPerson()" class="button">
+</div>
+
+<div class="container" id="adminLoginContainer" style="display: none;">
+    <h2>Admin Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Enter Username">
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter Password">
+    <input type="button" value="Login" onclick="login()" class="button">
+</div>
+
+<button onclick="window.location.href='search_person.html'" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);" class="button">Search</button>
+
+<script>
+function addPerson() {
+    var name = document.getElementById('name').value;
+    var age = document.getElementById('age').value;
+    var occupation = document.getElementById('occupation').value;
+    
+    if (!name || !age || !occupation || !image) {
+        alert("Please fill out all fields and select an image.");
+        return;
+    }
+
+    var person = {
+        "Name": name,
+        "Age": age,
+        "Occupation": occupation,
+        "Image": image
+    };
+
+    var people = localStorage.getItem('people') ? JSON.parse(localStorage.getItem('people')) : [];
+    people.push(person);
+    localStorage.setItem('people', JSON.stringify(people));
+
+    alert("Person successfully added.");
+    resetForm();
+}
+
+var image = null;
+
+document.getElementById('dropArea').addEventListener('drop', function(event) {
+    event.preventDefault();
+    var files = event.dataTransfer.files;
+    if (files.length > 0) {
+        var file = files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('dropArea').innerText = file.name;
+            image = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+document.getElementById('dropArea').addEventListener('dragover', function(event) {
+    event.preventDefault();
+});
+
+function resetForm() {
+    document.getElementById('name').value = '';
+    document.getElementById('age').value = '';
+    document.getElementById('occupation').value = '';
+    document.getElementById('dropArea').innerText = 'Drop Image Here';
+}
+
+function openFileExplorer() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('dropArea').innerText = file.name;
+            image = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    };
+    input.click();
+}
+
+function showAdminLoginForm() {
+    document.getElementById('adminLoginContainer').style.display = 'block';
+}
+
+function login() {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    if (username === 'Admin' && password === 'Admin123') {
+        window.location.href = 'admin_panel.html';
+    } else {
+        alert("Invalid credentials.");
+    }
+}
+</script>
+
+</body>
+</html>
