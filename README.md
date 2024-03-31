@@ -27,9 +27,9 @@ https://github.com/Chirooon/Person_management/assets/155199793/9b03be6e-bb49-418
 
 # Need help ? 
 
-Add me on discord https://discord.com/users/792468382083448853
+[![Discord](https://img.shields.io/badge/Add_me_on-Discord-blue.svg)](https://discord.com/users/792468382083448853)
 
 
 # Code request? 
 
-Add me on discord https://discord.com/users/792468382083448853
+[![Discord](https://img.shields.io/badge/Add_me_on-Discord-blue.svg)](https://discord.com/users/792468382083448853)
